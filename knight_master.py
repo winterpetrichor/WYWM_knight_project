@@ -1,18 +1,22 @@
 # author winterpetrichor [https://github.com/winterpetrichor]
-# 
+# WYWM Software Development python project
 
+# import submodules
 from knight_menu import *
 from knight_create import create_knight
 from knight_view import view_knights
 from attr_edit import edit_attr
 from knight_name import name_knight
 
+# variable for determining whether to exit
 exit_var = ["running"]
 
+# exit function
 def knights_exit(exit_var):
     exit_var.pop()
     return(exit_var)
-    
+
+# basic function returns     
 def yes():
     return("yes")
     

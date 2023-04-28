@@ -30,6 +30,8 @@ def menu_generation(funcs, exit_var):
     ]
     menu_tup_char = [
         ["--- Knight Characteristics Menu ---","What would you like to update?"],
+        #["Name", funcs["name"], ()],
+        #["Attributes", funcs["attr"], ()],
         ["Name", funcs["name"], ()],
         ["Attributes", funcs["attr"], ()],
         ["Cancel", funcs["cancel"], ()]
