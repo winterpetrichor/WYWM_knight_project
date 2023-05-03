@@ -16,7 +16,7 @@ def knights_exit(exit_var):
     exit_var.pop()
     return(exit_var)
 
-# basic function returns     
+# basic function returns for menu if's
 def yes():
     return("yes")
     
@@ -32,6 +32,7 @@ def attr():
 def cancel():
     return("cancel")
 
+# functions for passing to other modules without creating a circular import
 func_tup = (create_knight, 
             view_knights, 
             name_knight, 
@@ -46,7 +47,7 @@ funcs={}
 for fun in func_tup:
     funcs[fun.__name__]=fun
 
-
+# exit
 while len(exit_var)>0:
     start_menus(funcs, exit_var)
     

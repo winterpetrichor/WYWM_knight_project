@@ -39,13 +39,13 @@ def sel_knight_func(knights):
             return(knights[sel_knight_num-1])
     except:
         print("- Please enter the number of a knight \
-              shown above to try again. Starting over... -")
+shown above to try again. Starting over... -")
         return(sel_knight_func(knights))
 
 def edit_attr(knight_chars, chars, total_points, kc, knights_data, knights):
     if len(knights) == 0:
         print("You have no knights! \
-              Please create some knights and try again...")
+Please create some knights and try again...")
         return
     elif knights_data == []:
         print("")
@@ -70,3 +70,6 @@ def edit_attr(knight_chars, chars, total_points, kc, knights_data, knights):
         return
     else:
         edit_each(knights_data, total_points)
+
+if __name__ == "__main__":
+    import knight_master

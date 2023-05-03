@@ -80,6 +80,8 @@ def menu_selection(menuname):
         return(menudict[menuname][selection][2]
                (*menudict[menuname][selection][3]))
     except Exception as e:
+        print("")
+        print("ERROR MESSAGE:")
         print(e)
         print(traceback.format_exc())
         print("--- Please select a valid option, try again... ---")

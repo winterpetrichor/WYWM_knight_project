@@ -1,14 +1,17 @@
+# import random for shuffle to randomize distribution of attribute points
 import random
+
+# import local modules
 from attr_edit import edit_attr
 from knight_menu import show_menu
 
-k_list_test = []
-
+# knight class to hold number, name and attibutes
 class Knight:
     def __init__(self, k_num, k_name, k_attr, knights_data):
         self.k_num = k_num
         self.k_name = k_name
         self.k_attr = k_attr
+        ####### DOES KNIGHTS_DATA NEED TO EXIST?
         self.knights_data = knights_data
 
     def create_knight(chars, knights, knight_chars, total_points, kc):
@@ -29,7 +32,6 @@ class Knight:
         for i in range(chars):
             k_attr[knight_chars[i]]=kc[i]
 
-        
         knights_data.append(k_attr)
         # knights.append(knights_data)
         

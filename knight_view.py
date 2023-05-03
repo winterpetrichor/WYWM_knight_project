@@ -37,3 +37,5 @@ def view_knights(knights, knight_chars):
     dff = pd.concat([df,df2,df3], axis=0, ignore_index=True)
     print(dff)
     
+if __name__ == "__main__":
+    import knight_master
