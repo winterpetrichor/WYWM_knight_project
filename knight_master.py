@@ -1,6 +1,8 @@
 # author winterpetrichor [https://github.com/winterpetrichor]
 # WYWM Software Development python project
 
+# main module
+
 # import submodules
 from knight_menu import *
 from knight_create import create_knight
