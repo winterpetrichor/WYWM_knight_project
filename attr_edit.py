@@ -42,12 +42,12 @@ def sel_knight_func(knights):
 shown above to try again. Starting over... -")
         return(sel_knight_func(knights))
 
-def edit_attr(knight_chars, chars, total_points, kc, knights_data, knights):
+def edit_attr(knight_chars, chars, total_points, kc, knight, knights):
     if len(knights) == 0:
         print("You have no knights! \
 Please create some knights and try again...")
         return
-    elif knights_data == []:
+    elif knight == []:
         print("")
         print("-- Please select a knight --")
         for k in knights:
@@ -69,7 +69,7 @@ Please create some knights and try again...")
         # 
         return
     else:
-        edit_each(knights_data, total_points)
+        edit_each(knight, total_points)
 
 if __name__ == "__main__":
     import knight_master

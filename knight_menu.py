@@ -4,7 +4,7 @@
 import traceback
 
 knights = []
-knights_data = []
+knight = []
 knight_chars = ("Fortitude", "Intellect", "Bravado", "Ambition")
 chars = len(knight_chars)
 total_points = 5*(chars+1)
@@ -24,7 +24,7 @@ def menu_generation(funcs, exit_var):
     menu_tup_main = [
         ["--- Main Menu ---","What would you like to do?"],
         ["Create a new Knight", funcs["create_knight"], (knights, knight_chars, chars, total_points, kc)],
-        ["Select and update a Knight", funcs["edit_attr"], (knight_chars, chars, total_points, kc, knights_data, knights)],
+        ["Select and update a Knight", funcs["edit_attr"], (knight_chars, chars, total_points, kc, knight, knights)],
         ["Army Statistics", funcs["view_knights"], (knights, knight_chars)],
         ["Exit", funcs["knights_exit"], [exit_var]]
     ]
