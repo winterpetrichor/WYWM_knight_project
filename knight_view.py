@@ -1,55 +1,55 @@
-# author winterpetrichor [https://github.com/winterpetrichor]
+# Author winterpetrichor [https://github.com/winterpetrichor]
 # WYWM Software Development python project
 
-# import pandas to compile knights and attributes into a table 
+# Import pandas to compile knights and attributes into a table 
 import pandas as pd
 
-# function to view all knights and attributes
-# function also totals and averages attributes of entire army
+# Function to view all knights and attributes.
+# Function also totals and averages attributes of entire army.
 def view_knights(knights, knight_chars):
-    if(len(knights)==0):
+    if(len(knights) == 0):
         print("You have no knights! \
 Please create some knights and try again...")
         return
     
-    # initialize variables
-    arraylist = []
-    nlst = ["Name"]
+    # Initialize variables
+    array_list = []
+    name_list = ["Name"]
 
-    # create main table with values
+    # Create main table with values
     for c in knight_chars:
-        nlst.append(c)
+        name_list.append(c)
     for k in knights:
         lst = []
-        lst.append(k.k_name)
-        for a in k.k_attr:
-            lst.append(k.k_attr[a])
-        arraylist.append(lst)
-    df = pd.DataFrame(arraylist)
-    df.columns = nlst
+        lst.append(k.knight_name)
+        for a in k.knight_attr:
+            lst.append(k.knight_attr[a])
+        array_list.append(lst)
+    df = pd.DataFrame(array_list)
+    df.columns = name_list
 
-    # create sum and average rows
+    # Create sum and average rows
     tot = (df.sum(numeric_only=True))
     avg = (df.mean(numeric_only=True))
-    olst = ["Total"]
-    alst = ["Average"]
+    total_list = ["Total"]
+    average_list = ["Average"]
     for i in tot:
-        olst.append(i)
+        total_list.append(i)
     for a in avg:
-        alst.append(round(a,1))
+        average_list.append(round(a, 1))
     print("")
 
-    # list of columns
-    kc2 = ["Name"] + list(knight_chars)
+    # List of columns
+    df_headers = ["Name"] + list(knight_chars)
 
-    # total and average rows
-    df2 = pd.DataFrame([olst], columns=kc2)
-    df3 = pd.DataFrame([alst], columns=kc2)
+    # Total and average rows
+    df2 = pd.DataFrame([total_list], columns=df_headers)
+    df3 = pd.DataFrame([average_list], columns=df_headers)
 
-    # merge main table, total and average rows, and display table
-    dff = pd.concat([df,df2,df3], axis=0, ignore_index=True)
+    # Merge main table, total and average rows, and display table
+    dff = pd.concat([df, df2, df3], axis=0, ignore_index=True)
     print(dff)
     
-# run main module from any submodule
+# Run main module from any submodule
 if __name__ == "__main__":
     import knight_master

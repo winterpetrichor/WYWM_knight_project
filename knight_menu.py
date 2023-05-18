@@ -1,38 +1,38 @@
-# author winterpetrichor [https://github.com/winterpetrichor]
+# Author winterpetrichor [https://github.com/winterpetrichor]
 # WYWM Software Development python project
 
-# function to programatically generate menus and capture exceptions
+# Function to programatically generate menus and capture exceptions
 
-# import traceback to implement try and except 
-# to display error without halting program
+# Import traceback to implement try and except 
+# to display error without halting program.
 import traceback
 
-# initialize required variables
+# Initialize required variables
 
-# list of class objects that are knights
+# List of class objects that are knights
 knights = [] 
 
-# individual knight
+# Individual knight
 knight = [] 
 
-# characteristics/ attributes
+# Characteristics/ attributes
 knight_chars = ("Fortitude", "Intellect", "Bravado", "Ambition") 
 
-# used regularly, just for shortening code
+# Used regularly, just for shortening code
 chars = len(knight_chars)
 
-# calculate total points available for distribution
+# Calculate total points available for distribution
 total_points = 5*(chars+1)
 
-# start with 0 for each attribute
-kc=[0]*chars
+# Start with 0 for each attribute
+knight_chars_point_list = [0]*chars
 
-# empty dictionary to hold menus
-menudict={}
+# Empty dictionary to hold menus
+menu_dict = {}
 
-# function to programatically generate menus
+# Function to programatically generate menus.
 # I think a structure like this 
-# might make editing menus easier at a later date
+# might make editing menus easier at a later date.
 def menu_generation(funcs, exit_var):
 
     # tuple of menu names
@@ -43,22 +43,19 @@ def menu_generation(funcs, exit_var):
         "exit"
     )
 
-    # menu options, functions and arguments
+    # Menu options, functions and arguments
     menu_tup_main = [
-        ["--- Main Menu ---","What would you like to do?"],
-        ["Create a new Knight", funcs["create_knight"], (knights, 
-                                                         knight_chars, 
-                                                         chars, 
-                                                         total_points, 
-                                                         kc)],
+        ["--- Main Menu ---", "What would you like to do?"],
+        ["Create a new Knight", funcs["create_knight"], (
+        knights, knight_chars, chars, total_points, 
+        knight_chars_point_list)],
         
-        # always update knight_create/create_knight/if show_menu
-        # when updating the edit_attr args below
-        ["Select and update a Knight", funcs["edit_attr"], (total_points,
-                                                            knight, 
-                                                            knights)],
-        ["Army Statistics", funcs["view_knights"], (knights, 
-                                                    knight_chars)],
+        # Always update knight_create/create_knight/if show_menu
+        # When updating the edit_attr args below
+        ["Select and update a Knight", funcs["edit_attr"], (
+        total_points, knight, knights)],
+        ["Army Statistics", funcs["view_knights"], (
+        knights, knight_chars)],
         ["Exit", funcs["knights_exit"], [exit_var]]
     ]
     menu_tup_char = [
@@ -69,7 +66,7 @@ def menu_generation(funcs, exit_var):
         ["Cancel", funcs["cancel"], ()]
     ]
     menu_tup_attr = [
-        ["--- Knight Attributes Menu ---","What would you like to update?"],
+        ["--- Knight Attributes Menu ---", "What would you like to update?"],
     ]
     menu_tup_yn = [
         [""],
@@ -77,66 +74,66 @@ def menu_generation(funcs, exit_var):
         ["No", funcs["no"], ()]
     ]
 
-    # fill char menu with charateristics/attributes
+    # Fill char menu with charateristics/attributes
     for char in knight_chars:
         menu_tup_attr.append([char])
         
-    # number all items for reference
-    menulist = [menu_tup_main, menu_tup_char, menu_tup_yn]
-    for menu in menulist:
+    # Number all items for reference
+    menu_list = [menu_tup_main, menu_tup_char, menu_tup_yn]
+    for menu in menu_list:
         for j in range(len(menu)):
-            menu[j].insert(0,j)
+            menu[j].insert(0, j)
 
-    # fill menu dictionary
-    for i in range(len(menulist)):
-        menudict[menus[i]] = menulist[i]
+    # Fill menu dictionary
+    for i in range(len(menu_list)):
+        menu_dict[menus[i]] = menu_list[i]
 
-def show_menu(menuname):
+def show_menu(menu_name):
 
-    # print menu title and all options
-    for opt in menudict[menuname]:
+    # Print menu title and all options
+    for opt in menu_dict[menu_name]:
 
-        # skip title for yes/no menu
+        # Skip title for yes/no menu
         if opt[0] == 0:
-            if menuname == "yn":
+            if menu_name == "yn":
                 pass
             else:
                 print(opt[1])
                 print(opt[2])
         
-        # print title
+        # Print title
         else:
             print(str(opt[0])+": "+str(opt[1]))
-    return(menu_selection(menuname))
+    return(menu_selection(menu_name))
 
-def menu_selection(menuname):
+def menu_selection(menu_name):
 
-    # get and validate user selection
+    # Get and validate user selection
     try:
 
-        # get user input from menu dialog
+        # Get user input from menu dialog
         selection = int(input("Select your option: "))
-        return(menudict[menuname][selection][2]
-               (*menudict[menuname][selection][3]))
+        return(menu_dict[menu_name][selection][2]
+               (*menu_dict[menu_name][selection][3]))
     
-    # tidy and print exception for error reporting, but continue running
-    # this was implemented to help catch and diagnose errors in submodules
+    # Tidy and print exception for error reporting, but continue running.
+    # This was implemented to help catch and diagnose errors in submodules.
     # I kept it because I think in general, having the specific error
-    # information available for users is important
+    # information available for users is important.
     except Exception as e:
         print("")
         print("ERROR MESSAGE:")
         print(e)
         print(traceback.format_exc())
         print("--- Please select a valid option, try again... ---")
-        return(menu_selection(menuname))
+        return(menu_selection(menu_name))
 
-# execute (called from main module)
+# Execute (called from main module)
 def start_menus(funcs, exit_var):
     menu_generation(funcs, exit_var)
     show_menu("main")
     print("")
     
-# run main module from any submodule
+# Run main module from any submodule
 if __name__ == "__main__":
     import knight_master

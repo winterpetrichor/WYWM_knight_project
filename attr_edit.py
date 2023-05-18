@@ -1,47 +1,48 @@
-# author winterpetrichor [https://github.com/winterpetrichor]
+# Author winterpetrichor [https://github.com/winterpetrichor]
 # WYWM Software Development python project
 
-# import show_menu for y/n menu
+# Import show_menu for y/n menu
 from knight_menu import show_menu
 
-# import name_knight to edit knight name, this could have 
+# Import name_knight to edit knight name, this could have 
 # been included here, but done as a separate module for 
-# separation of functionality
+# separation of functionality.
 from knight_name import name_knight
 
-# function to edit each attribute by entering an integer
+# Function to edit each attribute by entering an integer
 def each_point(knight, points):
-    for i in knight.k_attr:
+    for i in knight.knight_attr:
         try: 
-            knight.k_attr[i] = int(input(str(i) + " = "))
-            points = points - knight.k_attr[i]
-        except: # exceptions displayed by knight_menu function
+            knight.knight_attr[i] = int(input(str(i) + " = "))
+            points = points - knight.knight_attr[i]
+            print("- You have " + str(points) + " points remaining ... -")
+        except: # Exceptions displayed by knight_menu function
             print("- Please enter an integer to try again. Starting over... -")
             each_point(knight, points)
             break
     return(points)
 
-# wrapper function for attribute editing
+# Wrapper function for attribute editing
 def edit_each(knight, total_points):
     print("")
-    print("How would you like to re-educate sir "+ knight.k_name+"?")
+    print("How would you like to re-educate sir "+ knight.knight_name+"?")
     print("- You have a maximum of " + str(total_points) 
           + " to assign. Spend them wisely. -")
     points = total_points
     points = each_point(knight, points)
 
-    # prevent point overspending
+    # Prevent point overspending
     if points < 0:
         print("Out of points! Starting over...")
         edit_each(knight, total_points)
     else:
         print("")
         print("After going through some re-training, Sir " 
-                + knight.k_name + " now has the following attributes:")
-        for i in knight.k_attr:
-            print(str(i) + ": " + str(knight.k_attr[i]))
+                + knight.knight_name + " now has the following attributes:")
+        for i in knight.knight_attr:
+            print(str(i) + ": " + str(knight.knight_attr[i]))
 
-# function to select the knight to edit
+# Function to select the knight to edit
 def sel_knight_func(knights):
     try: 
         sel_knight_num = int(input("Which knight would you like to update: "))
@@ -54,7 +55,7 @@ def sel_knight_func(knights):
 shown above to try again. Starting over... -")
         return(sel_knight_func(knights))
 
-# function to oversee knight editing
+# Function to oversee knight editing
 def edit_attr(total_points, knight, knights):
     if len(knights) == 0:
         print("You have no knights! \
@@ -64,17 +65,17 @@ Please create some knights and try again...")
         print("")
         print("-- Please select a knight --")
 
-        # print all knights to allow selection
+        # Print all knights to allow selection
         for k in knights:
-            print(str(k.k_num) + ": " + str(k.k_name))
-            for j in k.k_attr:
-                print("    " + str(j) + ": " + str(k.k_attr[j]))
+            print(str(k.knight_num) + ": " + str(k.knight_name))
+            for j in k.knight_attr:
+                print("    " + str(j) + ": " + str(k.knight_attr[j]))
 
-        # call sel_knight to allow knight selection input
+        # Call sel_knight to allow knight selection input
         sel_knight = sel_knight_func(knights)
 
-        # confirm selection and show "char" menu
-        print("You have selected Sir " + str(str(sel_knight.k_name)))
+        # Confirm selection and show "char" menu
+        print("You have selected Sir " + str(str(sel_knight.knight_name)))
         print("")
         edit_choice = show_menu("char")
         if edit_choice == "name":
@@ -87,6 +88,6 @@ Please create some knights and try again...")
     else:
         edit_each(knight, total_points)
 
-# run main module from any submodule
+# Run main module from any submodule
 if __name__ == "__main__":
     import knight_master
